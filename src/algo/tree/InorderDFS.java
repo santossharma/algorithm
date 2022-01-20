@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-/* Preorder traversal traverses Root first, then Left and Right nodes. Stack is used for it. */
+/* Preorder traversal traverses Left first, then Root and Right nodes. Stack is used for it. */
 public class InorderDFS {
     public static void main(String[] args) {
         /*
