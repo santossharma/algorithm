@@ -25,6 +25,35 @@ public class CustomLinkedList<T> {
         head = newNode; // new head
     }
 
+    public void deleteFirst() {
+        if(head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+         head = head.next;
+    }
+
+    public void deleteLast() {
+        if(head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if(head.next == null) {
+            head = null;
+            return;
+        }
+
+        Node<T> currentNode = head;
+        Node<T> lastNode = head.next;
+        while (lastNode.next != null) {
+            lastNode = lastNode.next;
+            currentNode = currentNode.next;
+        }
+        currentNode.next = null;
+    }
+
     // print linked list
     public void printLinkedList() {
         if(head == null) {
@@ -53,6 +82,8 @@ public class CustomLinkedList<T> {
         integerCustomLinkedList.printLinkedList();
         integerCustomLinkedList.addAtFirst(21);
         integerCustomLinkedList.addAtFirst(20);
+        integerCustomLinkedList.printLinkedList();
+        integerCustomLinkedList.deleteLast();
         integerCustomLinkedList.printLinkedList();
     }
 }
