@@ -10,6 +10,7 @@ package leetcode.medium;
 
     Input: head = [1], n = 1
     Output: []
+
 */
 
 import apnacollege.CustomLinkedList;
