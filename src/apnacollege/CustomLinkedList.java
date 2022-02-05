@@ -3,6 +3,7 @@ package apnacollege;
 public class CustomLinkedList<T> {
 
     Node<T> head;
+    private int size;
 
     class Node<T> {
         T data;
@@ -11,6 +12,7 @@ public class CustomLinkedList<T> {
         public Node(T data) {
             this.data = data;
             this.next = null;
+            size++;
         }
     }
 
@@ -31,7 +33,8 @@ public class CustomLinkedList<T> {
             return;
         }
 
-         head = head.next;
+        size--;
+        head = head.next;
     }
 
     public void deleteLast() {
@@ -40,18 +43,46 @@ public class CustomLinkedList<T> {
             return;
         }
 
+        size--;
         if(head.next == null) {
             head = null;
             return;
         }
 
-        Node<T> currentNode = head;
+        Node<T> secondLastNode = head;
         Node<T> lastNode = head.next;
         while (lastNode.next != null) {
             lastNode = lastNode.next;
-            currentNode = currentNode.next;
+            secondLastNode = secondLastNode.next;
         }
-        currentNode.next = null;
+        secondLastNode.next = null;
+    }
+
+     public void reverseIterate() {
+        if(head == null || head.next == null) {
+            return;
+        }
+
+        // ex. 20 -> 21
+        Node<T> previousNode = head; // previousNode = 20
+        Node<T> currentNode = head.next; // currentNode = 21
+
+        while(currentNode != null) {
+            Node<T> nextNode = currentNode.next; // nextNode = null
+            currentNode.next = previousNode; // currentNode's next is pointed to 20
+
+            //updating node
+            previousNode = currentNode; // previousNode (20) pointing to 21
+            currentNode = nextNode; // currentNode = null
+        }
+
+        head.next = null;
+        head = previousNode; // head = 21
+         // finally the linkedlist became 21 -> 20 -> null
+     }
+
+    public int getSize() {
+        return size;
     }
 
     // print linked list
@@ -83,7 +114,11 @@ public class CustomLinkedList<T> {
         integerCustomLinkedList.addAtFirst(21);
         integerCustomLinkedList.addAtFirst(20);
         integerCustomLinkedList.printLinkedList();
-        integerCustomLinkedList.deleteLast();
+        //integerCustomLinkedList.deleteLast();
+        integerCustomLinkedList.printLinkedList();
+        System.out.println(integerCustomLinkedList.getSize());
+
+        integerCustomLinkedList.reverseIterate();
         integerCustomLinkedList.printLinkedList();
     }
 }
